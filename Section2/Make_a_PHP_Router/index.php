@@ -6,7 +6,9 @@ require "functions.php";
 
 require "Database.php";
 
-$db = new Database();
+$config = require("config.php");
+
+$db = new Database($config['Database']);
 $posts = $db->query("SELECT * FROM posts where id = 1")->fetchAll(PDO::FETCH_ASSOC);
 
 dd($posts);

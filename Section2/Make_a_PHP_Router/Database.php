@@ -6,10 +6,13 @@ class Database {
 
     public $connection;
 
-    public function __construct()
+    public function __construct($config, $username = 'root', $password = '')
     {
-        $dsn = "mysql:host=localhost;port=3306;dbname=demo;user=root;charset=utf8mb4"; // Also we can set a password here
-        $this->connection = new PDO($dsn); // PDO = PHP Data Object
+        $dsn = 'mysql:' . http_build_query($config, '', ';'); // http_build_query($array, $prefix, $separator) $prefix = '' (default), $separator = '&' (default)
+
+        $this->connection = new PDO($dsn, $username, $password, [
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, // Fetch the results as an associative array
+        ]); // PDO = PHP Data Object PDO($dsn, $username, $password, $options) $options = [] (optional)
     }
 
     public function query($query) 
