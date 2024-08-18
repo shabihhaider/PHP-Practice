@@ -15,10 +15,10 @@ class Database {
         ]); // PDO = PHP Data Object PDO($dsn, $username, $password, $options) $options = [] (optional)
     }
 
-    public function query($query) 
+    public function query($query, $params = []) 
     {
         $statement = $this->connection->prepare($query); // Prepare a SQL statement
-        $statement->execute(); // Execute the SQL statement
+        $statement->execute($params); // Execute the SQL statement
         return $statement;
     }
 }
