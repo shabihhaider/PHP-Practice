@@ -1,15 +1,6 @@
 <?php
 
-$uri = parse_url($_SERVER['REQUEST_URI'])['path']; // Returns the path of the URI (e.g. "/about")
-
-$routes = [
-    '/' => 'controllers/index.php',
-    '/about' => 'controllers/about.php',
-    '/notes' => 'controllers/notes.php',
-    '/note' => 'controllers/note.php',
-    '/contact' => 'controllers/contact.php'
-];
-
+$routes = require "routes.php";
 
 function routeToController($uri, $routes) {
 
@@ -24,8 +15,10 @@ function abort($code = 404) { // By default, the code is 404: Page Not Found
     
     http_response_code($code);
     require "views/{$code}.php";
-
+    
     die(); // kill the execution
 }
+
+$uri = parse_url($_SERVER['REQUEST_URI'])['path']; // Returns the path of the URI (e.g. "/about")
 
 routeToController($uri, $routes);
