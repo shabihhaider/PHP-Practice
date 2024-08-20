@@ -6,6 +6,8 @@ class Database {
 
     public $connection;
 
+    public $statement;
+
     public function __construct($config, $username = 'root', $password = '')
     {
         $dsn = 'mysql:' . http_build_query($config, '', ';'); // http_build_query($array, $prefix, $separator) $prefix = '' (default), $separator = '&' (default)
@@ -17,8 +19,26 @@ class Database {
 
     public function query($query, $params = []) 
     {
-        $statement = $this->connection->prepare($query); // Prepare a SQL statement
-        $statement->execute($params); // Execute the SQL statement
-        return $statement;
+        $this->statement = $this->connection->prepare($query); // Prepare a SQL statement
+        $this->statement->execute($params); // Execute the SQL statement
+        return $this;
+    }
+
+    public function get() {
+        return $this->statement->fetchAll();
+    }
+
+    public function find() {
+        return $this->statement->fetch();
+    }
+
+    public function findOrAbort() {
+        $result = $this->find();
+
+        if (! $result) {
+            abort(); // 404: Page Not Found
+        }
+
+        return $result;
     }
 }

@@ -11,3 +11,9 @@ function dd($value) { // dd stands for "dump and die"
 function urlIs($path) {
     return $_SERVER['REQUEST_URI'] === $path;
 }
+
+function authorization($condition, $status =  Response::FORBIDDEN) {
+    if (! $condition) {
+        abort($status);
+    }
+}
