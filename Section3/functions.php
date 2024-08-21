@@ -17,3 +17,14 @@ function authorization($condition, $status =  Response::FORBIDDEN) {
         abort($status);
     }
 }
+
+function base_path($path) {
+    return BASE_PATH . $path;
+}
+
+function view($path, $attributes = []) {
+
+    extract($attributes); // Extract the array into variables (keys into variable names and values into variable values)
+
+    require base_path(("views/{$path}"));
+}
