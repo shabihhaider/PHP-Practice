@@ -1,5 +1,5 @@
 <?php require('views/partials/head.php') ?>
-<?php include('partials/nav.php') ?>
+<?php include('views/partials/nav.php') ?>
 <?php require('views/partials/banner.php') ?>
 
 <main>
