@@ -1,4 +1,4 @@
-<?php require('views/partials/head.php') ?>
+<?php require('partials/head.php') ?>
 <?php include('partials/nav.php') ?>
 
 <main>
@@ -11,4 +11,4 @@
   </div>
 </main>
 
-<?php require('views/partials/footer.php') ?>
+<?php require('partials/footer.php') ?>

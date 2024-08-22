@@ -1,5 +1,7 @@
 <?php
 
+use Core\Response;
+
 function dd($value) { // dd stands for "dump and die"
     echo "<pre>";
     var_dump($value);

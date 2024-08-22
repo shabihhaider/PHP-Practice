@@ -1,5 +1,7 @@
 <?php
 
+namespace Core;
+
 class Validator {
 
     public static function string($value, $min = 1, $max = INF) { // INF is a constant in PHP that represents infinity and static means we can call this method without creating an instance of the class. It's like a pure function.
