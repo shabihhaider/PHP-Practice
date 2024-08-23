@@ -5,7 +5,7 @@ use Core\Database;
 $config = require base_path("config.php");
 $db = new Database($config['Database']);
 
-$cuurentUserId = 2;
+$cuurentUserId = 1;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Make sure current user is deleting his own note

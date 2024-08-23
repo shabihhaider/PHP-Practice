@@ -14,6 +14,13 @@ function urlIs($path) {
     return $_SERVER['REQUEST_URI'] === $path;
 }
 
+function abort($code = Response::NOT_FOUND) {
+    http_response_code($code);
+        require base_path("views/{$code}.php");
+        
+        die(); // kill the execution
+}
+
 function authorization($condition, $status =  Response::FORBIDDEN) {
     if (! $condition) {
         abort($status);

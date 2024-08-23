@@ -12,4 +12,11 @@ spl_autoload_register(function ($class) { // autoload function is used to load c
     require base_path("{$class}.php");
 });
 
-require base_path("Core/router.php");
+$router = new \Core\Router();
+
+$routes = require base_path("routes.php");
+$uri = parse_url($_SERVER['REQUEST_URI'])['path']; // Returns the path of the URI (e.g. "/about") Current URI
+
+$method = isset($_POST['_method']) ? $_POST['_method'] : $_SERVER['REQUEST_METHOD']; // If the request method is POST, then check if the _method is set in the POST request. If it is set, then use that method. Otherwise, use the request method
+
+$router->route($uri, $method);
