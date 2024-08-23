@@ -45,12 +45,20 @@ class Router {
     }
 
     public function route($uri, $method){
+        
 
-        foreach($this->routes as $route) {
-            if($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
-                return require base_path($route['controller']);
+
+        foreach ($this->routes as $route) {
+            
+            // Check if the route uri and method are the same as the current uri and method
+            if($route['uri'] == $uri && $route['method'] == $method) {
+                // If they are the same, then require the controller
+                require base_path($route['controller']);
+                return;
             }
+            
         }
+        
 
         // abort();
         $this->abort();
